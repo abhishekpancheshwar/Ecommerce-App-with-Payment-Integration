@@ -19,6 +19,8 @@ export const createPorductImage = async ({ pImage }) => {
   /* Most important part for uploading multiple image  */
 };
 
+// FetchApi.js
+
 export const createProduct = async ({
   pName,
   pDescription,
@@ -29,12 +31,21 @@ export const createProduct = async ({
   pPrice,
   pOffer,
 }) => {
-  /* Most important part for uploading multiple image  */
+
+  // --- DEBUGGING LOG (Run this first to verify input) ---
+  console.log("FETCHAPI: Sending FormData. pImage count:", pImage ? pImage.length : 0);
+  // --- END DEBUGGING LOG ---
+
+  /* Most important part for uploading multiple image  */
   let formData = new FormData();
-  for (const file of pImage) {
-    formData.append("pImage", file);
+  // Ensure pImage is iterable before looping
+  if (pImage && pImage.length > 0) {
+    for (const file of pImage) {
+      formData.append("pImage", file);
+    }
   }
-  /* Most important part for uploading multiple image  */
+  /* Most important part for uploading multiple image  */
+  
   formData.append("pName", pName);
   formData.append("pDescription", pDescription);
   formData.append("pStatus", pStatus);
@@ -45,9 +56,18 @@ export const createProduct = async ({
 
   try {
     let res = await axios.post(`${apiURL}/api/product/add-product`, formData);
-    return res.data;
+    return res.data; // Returns { success: '...' } or similar from the server
   } catch (error) {
-    console.log(error);
+    // --- CRITICAL FIX START ---
+    console.error("API CALL ERROR:", error.response ? error.response.data : error.message);
+
+    // Return a structured error object so the frontend can handle it
+    return {
+      error: error.response
+        ? error.response.data.error || "Server responded with an error."
+        : "Network request failed. Check your connection or API URL."
+    };
+    // --- CRITICAL FIX END ---
   }
 };
 

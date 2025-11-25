@@ -41,59 +41,81 @@ class Product {
     }
   }
 
-  async postAddProduct(req, res) {
-    let { pName, pDescription, pPrice, pQuantity, pCategory, pOffer, pStatus } =
-      req.body;
-    let images = req.files;
-    // Validation
-    if (
-      !pName |
-      !pDescription |
-      !pPrice |
-      !pQuantity |
-      !pCategory |
-      !pOffer |
-      !pStatus
-    ) {
+  // server/controller/products.js (or similar file)
+
+async postAddProduct(req, res) {
+  let { pName, pDescription, pPrice, pQuantity, pCategory, pOffer, pStatus } =
+    req.body;
+  let images = req.files;
+
+  // --- CRITICAL FIX 1: Convert empty category string/value to null ---
+  // The frontend now sends "" (empty string) when no category is selected.
+  // Mongoose requires this to be null for a non-required ObjectId field.
+  if (pCategory === "" || pCategory === "optional") {
+    pCategory = null;
+  }
+  // -------------------------------------------------------------------
+
+  // --- FIX 2: Use correct logical OR operator (||) for validation ---
+  // Validation
+  if (
+    !pName ||
+    !pDescription ||
+    !pPrice ||
+    !pQuantity ||
+    !pOffer ||
+    !pStatus
+    // NOTE: pCategory is now optional, so it is removed from this check.
+  ) {
+    Product.deleteImages(images, "file");
+    return res.json({ error: "All required fields must be filled" });
+  }
+  // Validate Name and description
+  else if (pName.length > 255 || pDescription.length > 3000) {
+    Product.deleteImages(images, "file");
+    return res.json({
+      error: "Name must be under 255 & Description must not be over 3000 characters long",
+    });
+  }
+  // Validate Images
+  else if (!images || images.length < 2) { // Added check for !images just in case
+    // NOTE: If you enforce exactly 2 images: images.length !== 2
+    // If you enforce at least 2 images: images.length < 2
+    Product.deleteImages(images, "file");
+    return res.json({ error: "Must need to provide at least 2 images" });
+  } else {
+    try {
+      let allImages = [];
+      for (const img of images) {
+        allImages.push(img.filename);
+      }
+      
+      let newProduct = new productModel({
+        pImages: allImages,
+        pName,
+        pDescription,
+        pPrice,
+        pQuantity,
+        pCategory, // This is now either a valid ID or null
+        pOffer,
+        pStatus,
+      });
+
+      let save = await newProduct.save();
+      if (save) {
+        return res.json({ success: "Product created successfully" });
+      }
+    } catch (err) {
+      // CRITICAL: Log the error, but send a generic server error to the client
+      console.error("Product save failed:", err);
+      // Delete uploaded files on save failure
       Product.deleteImages(images, "file");
-      return res.json({ error: "All filled must be required" });
-    }
-    // Validate Name and description
-    else if (pName.length > 255 || pDescription.length > 3000) {
-      Product.deleteImages(images, "file");
-      return res.json({
-        error: "Name 255 & Description must not be 3000 charecter long",
+      return res.status(500).json({ 
+          error: "Failed to save product to database. Check server logs." 
       });
     }
-    // Validate Images
-    else if (images.length !== 2) {
-      Product.deleteImages(images, "file");
-      return res.json({ error: "Must need to provide 2 images" });
-    } else {
-      try {
-        let allImages = [];
-        for (const img of images) {
-          allImages.push(img.filename);
-        }
-        let newProduct = new productModel({
-          pImages: allImages,
-          pName,
-          pDescription,
-          pPrice,
-          pQuantity,
-          pCategory,
-          pOffer,
-          pStatus,
-        });
-        let save = await newProduct.save();
-        if (save) {
-          return res.json({ success: "Product created successfully" });
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
   }
+}
 
   async postEditProduct(req, res) {
     let {

@@ -1,108 +1,170 @@
-# Project Demo
+🚀 MERN Backend Server – Premium Edition
+Built with precision by Abhishek Pancheshwar
+<p align="center"> <img src="https://img.shields.io/badge/Node.js-Backend-green?logo=node.js" /> <img src="https://img.shields.io/badge/Express.js-Framework-lightgrey?logo=express" /> <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen?logo=mongodb" /> <img src="https://img.shields.io/badge/Braintree-Payments-blue?logo=paypal" /> <img src="https://img.shields.io/badge/Status-Active-success" /> </p>
+🎥 Project Demo
 
-[![Alt text](https://img.youtube.com/vi/lXk14qt2D28/0.jpg)](https://www.youtube.com/watch?v=lXk14qt2D28)
+Click below to watch the full demo:
 
-## Getting Started
+📘 Overview
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+This backend powers a full MERN stack application, featuring:
 
-### Prerequisites
+🔐 Secure user authentication
 
-NPM / Yarn and Node.js installed
+💳 Braintree payment integration
 
-### .env
+🛒 Product & order handling
 
-In the server > .env file, you can find some information. Please use your own API key for future use, as this key may not work in the future.
+⚡ Scalable API architecture
 
-```
+🌐 Fully deployable on Render
+
+🛠️ Tech Stack
+Technology	Purpose
+Node.js	Backend runtime environment
+Express.js	API framework
+MongoDB + Mongoose	Database & ORM
+Braintree	Payment Gateway
+Dotenv	Environment configuration
+Nodemon	Dev server auto-reload
+📦 Project Setup
+1️⃣ Prerequisites
+
+Make sure you have installed:
+
+Node.js (Latest LTS)
+
+NPM / Yarn
+
+MongoDB Atlas account (for production)
+
+Braintree Sandbox account
+
+🔧 Environment Variables (.env)
+
+Inside server/.env, add your own credentials:
+
+PORT=8080
+
+DATABASE=mongodb://127.0.0.1:27017/ecommerce
+
 BRAINTREE_MERCHANT_ID=your_id
 BRAINTREE_PUBLIC_KEY=your_public_key
 BRAINTREE_PRIVATE_KEY=your_private_key
-```
 
-### 🔑 Getting Braintree API Keys
+JWT_SECRET=your_secret_key
 
-To enable payment functionality, you need to configure your own Braintree API credentials.
 
-#### Steps to get your Braintree API keys
+⚠️ Do NOT commit this file to GitHub.
+⚠️ Replace all values with your own keys.
 
-1. Go to the official Braintree website: [https://www.braintreepayments.com/](https://www.braintreepayments.com/)
-2. Create a **free Sandbox account** at [https://sandbox.braintreegateway.com/](https://sandbox.braintreegateway.com/)
-3. After logging in, navigate to:  
-   **Account → Settings → API → API Keys**
-4. Click **“Generate New API Key”** if none exists.
-5. Copy your credentials:
-   - **Merchant ID**
-   - **Public Key**
-   - **Private Key**
-6. Add them to your `.env` file (inside the `server` folder):
+🔑 Get Braintree API Keys
+Steps:
 
-   ```bash
-   BRAINTREE_MERCHANT_ID=your_merchant_id_here
-   BRAINTREE_PUBLIC_KEY=your_public_key_here
-   BRAINTREE_PRIVATE_KEY=your_private_key_here
-   ```
+Visit: https://www.braintreepayments.com/
 
-### Installing
+Create Sandbox account: https://sandbox.braintreegateway.com/
 
-Installing NPM modules on both client and server folders
+Go to:
+Account → Settings → API → API Keys
 
-Execute these commands from the project directory
+Generate a new key if needed.
 
-```
+Copy:
+
+Merchant ID
+
+Public Key
+
+Private Key
+
+Paste into .env file.
+
+⚙️ Install Dependencies
+Install client dependencies:
 cd client && npm install
-```
 
-```
+Install server dependencies:
 cd server && npm install
-```
 
-### Running the app
-
-Open a terminal on server directory
-
-```
+🚀 Running the App Locally
+Start Backend:
 npm run start:dev
-```
 
-and open another terminal on client directory
+Start Frontend:
+npm start
 
-```
-npm run start
-```
 
-Access the web app at http://localhost:3000/
+Your app will be available at:
+👉 http://localhost:3000
 
-### Deploying the backend server to render
+🌐 Deploy Backend to Render (Step-by-Step)
+1️⃣ Create an account
 
-Follow these setps 👇👇
+https://render.com/
 
-1. Create your render account in https://render.com/
-2. Connect your github to render and give the project permission for that
-3. Then create a new Web Service and add your repo (your repo must be look like this repo's folder structure like frontend and backend both in that repo)
-4. For deploying this, every change will be in this `render-deploy-backend` branch. So don't change your `.evn` from master branch.
-5. You have to change your database to local to mongodb atlas. Because in this deployment we are not creating db server. So we will be using mongo atlas url. So find your mongodb cloud url with database which will look like this: `mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   and
-   <b>goto the `render-deploy-backend` branch</b>
-   and goto `.env` file and replace the first variable to your latest mongodb cloud url like this:
-   `DATABASE=mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   Don't just put this url. Your url will be different. You will find it in your mongo cluster setting.
-   The old variable will be like this: `DATABASE=mongodb://127.0.0.1:27017/ecommerce
-` and your new one should look like this:
-   `DATABASE=mongodb+srv://myusername:myclusterpassword@mycluster.mongodb.net/ecommerce?retryWrites=true&w=majority`
-   you can find the mongo url by goto the mongodb atlas website and goto your database and you can find a connect button and click on that you will see the url. And modify the url quite like my one with your secret info.
-   N.B: And you must need to provide the cluster password not your account password! So find your cluster password from database access menu in mongodb atlast cloud and change accoding to you. Here I provide all image's that you can undarstand better
-   ![Alt Text](assetREADME.md/atlasUrl.png)
-   ![Alt Text](assetREADME.md/clusterPassword.png)
-   ![Alt Text](assetREADME.md/networkAccess.png)
+2️⃣ Connect your GitHub repository
+3️⃣ Create Web Service
 
-6. Then come to render website. Give all of the imformations I set in the image below just change the name of your project and then must be change the branch name to `master` to `render-deploy-backend`
+Select the backend folder.
 
-7. This is the setup for render
-   ![Alt Text](assetREADME.md/renderDeployBackendSetup.png)
+4️⃣ Switch to deployment branch
 
-8. After all the setup you finished create the web service and It will deploy the project.
+Use branch: render-deploy-backend
 
-You can deploy frontend into vercel or netlify also. Thanks
+5️⃣ Change database to MongoDB Atlas
 
-`Build with 💛 by Hasan`
+Replace local DB with this format:
+
+DATABASE=mongodb+srv://username:password@cluster.mongodb.net/ecommerce?retryWrites=true&w=majority
+
+
+📌 How to get this URL?
+Go to MongoDB Atlas → Database → Connect → Drivers
+
+6️⃣ Use cluster password (NOT account password)
+
+Images for guidance:
+
+7️⃣ Render configuration example:
+
+8️⃣ Deploy
+
+Render will automatically install and deploy.
+
+🧩 Project Structure
+server/
+│── controllers/
+│── models/
+│── routes/
+│── middlewares/
+│── utils/
+│── server.js
+│── .env
+│── package.json
+
+
+Clean, modular, and scalable for future updates.
+
+🛡️ Security Best Practices
+
+✔ Use environment variables
+✔ Never expose API keys
+✔ Use strong JWT secret keys
+✔ Enable IP whitelist in MongoDB Atlas
+✔ Use HTTPS in production
+
+🌍 Frontend Deployment
+
+You can deploy the frontend using:
+
+Vercel
+
+Netlify
+
+Surge
+
+GitHub Pages
+
+🙌 Credits
+Built with ❤️ by Abhishek Pancheshwar

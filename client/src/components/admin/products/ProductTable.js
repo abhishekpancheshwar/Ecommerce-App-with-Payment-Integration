@@ -155,7 +155,14 @@ const ProductTable = ({ product, deleteProduct, editProduct }) => {
           )}
         </td>
         <td className="p-2 text-center">{product.pQuantity}</td>
-        <td className="p-2 text-center">{product.pCategory.cName}</td>
+
+        {/* --- CRITICAL FIX APPLIED HERE (Line 158) --- */}
+        <td className="p-2 text-center">
+          {/* Check if pCategory exists before accessing cName */}
+          {product.pCategory ? product.pCategory.cName : "N/A"} 
+        </td>
+        {/* --------------------------------------------- */}
+        
         <td className="p-2 text-center">{product.pOffer}</td>
         <td className="p-2 text-center">
           {moment(product.createdAt).format("lll")}

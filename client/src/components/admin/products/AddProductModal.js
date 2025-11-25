@@ -35,26 +35,52 @@ const AddProductDetail = ({ categories }) => {
     }, 1000);
   };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
-    e.target.reset();
+  // AddProductModal.js (around line 43)
 
-    if (!fData.pImage) {
-      setFdata({ ...fData, error: "Please upload at least 2 image" });
+  // AddProductModal.js (Corrected submitForm function)
+
+  const submitForm = async (e) => {
+    e.preventDefault(); // Keep this here to prevent the default HTML submission
+
+    // TEMPORARY DEBUGGING LOG
+    console.log("Starting form submission check...");
+
+    // 1. VALIDATE IMAGE COUNT FIRST
+    // Check if pImage is null, or if it's an array with less than 2 files
+    if (!fData.pImage || fData.pImage.length < 2) {
+      console.log("Validation Failed: Image count insufficient or pImage is null."); // <-- New Log
+      setFdata({
+        ...fData,
+        error: "Please upload at least 2 images",
+        success: false, // Ensure success is false if there's an error
+      });
       setTimeout(() => {
         setFdata({ ...fData, error: false });
       }, 2000);
+      return; // Stop execution if validation fails
     }
 
+    console.log("Validation passed. Attempting API call with data:", fData);
+
     try {
+      // 2. CALL API with data
+      // NOTE: You are passing fData here, and the createProduct in fetchapi
+      // correctly extracts the properties.
       let responseData = await createProduct(fData);
+
       if (responseData.success) {
+        // 3. ON SUCCESS: Reset the UI and state
         fetchData();
+
+        // --- ONLY RESET ON SUCCESS ---
+        e.target.reset();
+        // -----------------------------
+
         setFdata({
           ...fData,
           pName: "",
           pDescription: "",
-          pImage: "",
+          pImage: null, // Set back to initial null/empty state
           pStatus: "Active",
           pCategory: "",
           pPrice: "",
@@ -63,22 +89,14 @@ const AddProductDetail = ({ categories }) => {
           success: responseData.success,
           error: false,
         });
+
+        console.log("Validation Failed: Missing required fields."); // <-- New Log
+
         setTimeout(() => {
-          setFdata({
-            ...fData,
-            pName: "",
-            pDescription: "",
-            pImage: "",
-            pStatus: "Active",
-            pCategory: "",
-            pPrice: "",
-            pQuantity: "",
-            pOffer: 0,
-            success: false,
-            error: false,
-          });
+          setFdata({ ...fData, success: false, error: false });
         }, 2000);
       } else if (responseData.error) {
+        // ON ERROR: Don't reset the form, just display the error
         setFdata({ ...fData, success: false, error: responseData.error });
         setTimeout(() => {
           return setFdata({ ...fData, error: false, success: false });
@@ -254,9 +272,7 @@ const AddProductDetail = ({ categories }) => {
                   className="px-4 py-2 border focus:outline-none"
                   id="status"
                 >
-                  <option disabled value="">
-                    Select a category
-                  </option>
+                  <option value="">Select a category</option>
                   {categories.length > 0
                     ? categories.map(function (elem) {
                         return (
@@ -326,7 +342,7 @@ const AddProductModal = (props) => {
     fetchCategoryData();
   }, []);
 
-  const [allCat, setAllCat] = useState({});
+  const [allCat, setAllCat] = useState([]);
 
   const fetchCategoryData = async () => {
     let responseData = await getAllCategory();
