@@ -1,5 +1,30 @@
-🌟 Project Name A Modern React Application Built by Abhishek Pancheshwar
+🌟 🛒 E-Commerce MERN Application
 
+A full-featured e-commerce platform built using the MERN stack.
+Users can register, log in, list their products for sale, browse items, add to wishlist, purchase via UPI/credit card, and track their orders.
+
+Key Features
+
+🔐 User login & registration (JWT Auth)
+
+🛍 Add products (Seller)
+
+❤️ Wishlist management
+
+💳 Secure payment integration (UPI/Credit Card)
+
+📦 Order dashboard with status tracking
+
+⭐ Review & rating system
+
+👤 Profile update
+
+🔒 Protected routes
+
+🌐 Deployment: Frontend (Vercel), Backend (Render)
+
+
+This project is designed as a scalable, production-ready application.
   
 
 🔗 Live Demo: ecommerce-app-with-payment-integra-git-209e38-abhishek-0d1fe040.vercel.app
