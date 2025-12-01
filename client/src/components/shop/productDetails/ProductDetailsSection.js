@@ -98,9 +98,10 @@ const ProductDetailsSection = (props) => {
     <Fragment>
       <Submenu
         value={{
-          categoryId: sProduct.pCategory._id,
+          // Use optional chaining for safe access to nested properties
+          categoryId: sProduct.pCategory?._id,
           product: sProduct.pName,
-          category: sProduct.pCategory.cName,
+          category: sProduct.pCategory?.cName,
         }}
       />
       <section className="m-4 md:mx-12 md:my-6">
