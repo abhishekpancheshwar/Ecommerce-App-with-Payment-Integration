@@ -1,170 +1,44 @@
-🚀 MERN Backend Server – Premium Edition
-Built with precision by Abhishek Pancheshwar
-<p align="center"> <img src="https://img.shields.io/badge/Node.js-Backend-green?logo=node.js" /> <img src="https://img.shields.io/badge/Express.js-Framework-lightgrey?logo=express" /> <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen?logo=mongodb" /> <img src="https://img.shields.io/badge/Braintree-Payments-blue?logo=paypal" /> <img src="https://img.shields.io/badge/Status-Active-success" /> </p>
-🎥 Project Demo
+🌟 Project Name A Modern React Application Built by Abhishek Pancheshwar
 
-Click below to watch the full demo:
+  
 
-📘 Overview
+🔗 Live Demo
+👉 Live Website: https://your-demo-link-here.com
 
-This backend powers a full MERN stack application, featuring:
+(Replace with your real deployed link — Vercel/Netlify/etc.)
 
-🔐 Secure user authentication
+🖼️ Screenshots
 
-💳 Braintree payment integration
+✨ Add your project’s UI screenshots below. Replace the image URLs with links of your uploaded images (GitHub, Imgur, Cloudinary, etc.)
 
-🛒 Product & order handling
+📌 Home Page: <img width="1894" height="918" alt="Screenshot 2025-11-25 143316" src="https://github.com/user-attachments/assets/39a1d36e-aa6d-417b-aef2-0adcf5f555e1" />
 
-⚡ Scalable API architecture
 
-🌐 Fully deployable on Render
+📌 Login Page: <img width="1019" height="620" alt="Screenshot 2025-11-25 143414" src="https://github.com/user-attachments/assets/f0559ccb-5f1f-4780-a329-4826873ce037" />
 
-🛠️ Tech Stack
-Technology	Purpose
-Node.js	Backend runtime environment
-Express.js	API framework
-MongoDB + Mongoose	Database & ORM
-Braintree	Payment Gateway
-Dotenv	Environment configuration
-Nodemon	Dev server auto-reload
-📦 Project Setup
-1️⃣ Prerequisites
 
-Make sure you have installed:
+📌 Dashboard: <img width="1898" height="913" alt="Screenshot 2025-11-25 143502" src="https://github.com/user-attachments/assets/60a80607-cd56-471a-a425-a080525cf9a1" />
 
-Node.js (Latest LTS)
+🎯 Overview
 
-NPM / Yarn
+This is a fully customized React project developed by Abhishek. Built with Create React App, it provides a clean and scalable structure for building powerful web apps.
 
-MongoDB Atlas account (for production)
+✨ Features
 
-Braintree Sandbox account
+⚡ Fast & optimized React setup
 
-🔧 Environment Variables (.env)
+📁 Clean folder structure
 
-Inside server/.env, add your own credentials:
+🎨 Easy to customize
 
-PORT=8080
+🚀 Production-ready build
 
-DATABASE=mongodb://127.0.0.1:27017/ecommerce
+🔥 Great foundation for MERN projects
 
-BRAINTREE_MERCHANT_ID=your_id
-BRAINTREE_PUBLIC_KEY=your_public_key
-BRAINTREE_PRIVATE_KEY=your_private_key
+🛠️ Tech Stack Technology Description ⚛️ React.js UI Framework 🟨 JavaScript ES6+ Core language 🎨 CSS / Tailwind Styling 🟩 Node.js + npm Tools & Scripts 📥 Installation npm install
 
-JWT_SECRET=your_secret_key
+🚀 Start Server npm start
 
+🧑‍💻 Author Abhishek Pancheshwar
 
-⚠️ Do NOT commit this file to GitHub.
-⚠️ Replace all values with your own keys.
-
-🔑 Get Braintree API Keys
-Steps:
-
-Visit: https://www.braintreepayments.com/
-
-Create Sandbox account: https://sandbox.braintreegateway.com/
-
-Go to:
-Account → Settings → API → API Keys
-
-Generate a new key if needed.
-
-Copy:
-
-Merchant ID
-
-Public Key
-
-Private Key
-
-Paste into .env file.
-
-⚙️ Install Dependencies
-Install client dependencies:
-cd client && npm install
-
-Install server dependencies:
-cd server && npm install
-
-🚀 Running the App Locally
-Start Backend:
-npm run start:dev
-
-Start Frontend:
-npm start
-
-
-Your app will be available at:
-👉 http://localhost:3000
-
-🌐 Deploy Backend to Render (Step-by-Step)
-1️⃣ Create an account
-
-https://render.com/
-
-2️⃣ Connect your GitHub repository
-3️⃣ Create Web Service
-
-Select the backend folder.
-
-4️⃣ Switch to deployment branch
-
-Use branch: render-deploy-backend
-
-5️⃣ Change database to MongoDB Atlas
-
-Replace local DB with this format:
-
-DATABASE=mongodb+srv://username:password@cluster.mongodb.net/ecommerce?retryWrites=true&w=majority
-
-
-📌 How to get this URL?
-Go to MongoDB Atlas → Database → Connect → Drivers
-
-6️⃣ Use cluster password (NOT account password)
-
-Images for guidance:
-
-7️⃣ Render configuration example:
-
-8️⃣ Deploy
-
-Render will automatically install and deploy.
-
-🧩 Project Structure
-server/
-│── controllers/
-│── models/
-│── routes/
-│── middlewares/
-│── utils/
-│── server.js
-│── .env
-│── package.json
-
-
-Clean, modular, and scalable for future updates.
-
-🛡️ Security Best Practices
-
-✔ Use environment variables
-✔ Never expose API keys
-✔ Use strong JWT secret keys
-✔ Enable IP whitelist in MongoDB Atlas
-✔ Use HTTPS in production
-
-🌍 Frontend Deployment
-
-You can deploy the frontend using:
-
-Vercel
-
-Netlify
-
-Surge
-
-GitHub Pages
-
-🙌 Credits
-Built with ❤️ by Abhishek Pancheshwar
+🚀 MERN Stack Developer 📍 Nagpur, Maharashtra 🔥 Passionate about high-quality applications
