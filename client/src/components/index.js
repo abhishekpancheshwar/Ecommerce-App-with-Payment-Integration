@@ -15,7 +15,6 @@ import { UserProfile, UserOrders, SettingUser } from "./shop/dashboardUser";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-/* Routing All page will be here */
 const Routes = (props) => {
   return (
     <Router>
